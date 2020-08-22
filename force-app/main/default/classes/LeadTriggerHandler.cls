@@ -26,7 +26,11 @@ public class LeadTriggerHandler extends TriggerHandler {
     }
     
     public override void executeAfterInsert() {     
-        system.debug(LoggingLevel.ERROR, 'LEAD TRIGGER HANDLER AFTER INSERT');   
+        system.debug(LoggingLevel.ERROR, 'LEAD TRIGGER HANDLER AFTER INSERT'); 
+        CIFController cifc = new CIFController();
+        cifc.CreateOrUpdateCIF((Map<Id,SObject>)newLeadsById);
+        //CIFController.postLeadConversion(newLeadsById);
+        //CIFController.getMostRecentCampaign(new List<Id>(newLeadsById.keyset()));
     }
     
     public override void executeBeforeUpdate() {
@@ -34,7 +38,11 @@ public class LeadTriggerHandler extends TriggerHandler {
     }
     
     public override void executeAfterUpdate() {
-        system.debug(LoggingLevel.ERROR, 'LEAD TRIGGER HANDLER AFTER UPDATE');   
+        system.debug(LoggingLevel.ERROR, 'LEAD TRIGGER HANDLER AFTER UPDATE');  
+        CIFController cifc = new CIFController();
+        cifc.CreateOrUpdateCIF((Map<Id,SObject>)newLeadsById);
+        //CIFController.postLeadConversion(newLeadsById);
+        //CIFController.getMostRecentCampaign(new List<Id>(newLeadsById.keyset())); 
     }
     
     public override void executeBeforeDelete() {

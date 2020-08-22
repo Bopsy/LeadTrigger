@@ -1,0 +1,25 @@
+public class sliderController {
+
+    public Map<string,string> MapOfChoice { get; set; }
+
+    public string choiceMap{set;get;}
+    public sliderController(){
+        MapOfChoice = new Map<string,string>();
+    }
+    
+    public void getShowchoices(){
+        choiceMap =  choiceMap.remove('http://');
+        List<String> choicesString =  choiceMap.split(',');
+        List<string> temp = new List<string>();
+   
+        for(string s : choicesString ){
+            temp = s.split(':');
+            MapOfChoice.put(temp.get(0).trim(), temp.get(1).trim());
+        }
+    }
+    
+    public Map<String, String> getChoicesMap() {
+        getShowchoices();
+        return MapOfChoice;
+    }
+}
